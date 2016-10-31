@@ -2,6 +2,11 @@ expected_value <- function(density, a, b) {
     find_sum(function(x) x * density(x, a, b), 0L, find_upper_limit(a, b))
 }
 
+variance <- function(density, a, b) {
+    mean <- a / (a + b)
+    find_sum(function(x) (x - mean)^2 * density(x, a, b), 0L, find_upper_limit(a, b))
+}
+
 find_sum <- function(f, from, to) {
     sum(vapply(from:to, f, double(1)))
 }

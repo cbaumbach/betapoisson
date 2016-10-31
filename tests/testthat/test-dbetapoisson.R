@@ -13,3 +13,7 @@ test_that("probabilities are >= 0 for values >= 0", {
 test_that("a = 2 and b = 3 results in E(X) = 2/5", {
     expect_equal(expected_value(dbetapoisson, a = 2, b = 3), 2/5)
 })
+
+test_that("a = 2 and b = 3 results in V(X) = 11/25", {
+    expect_equal(variance(dbetapoisson, a = 2, b = 3), 11/25)
+})
