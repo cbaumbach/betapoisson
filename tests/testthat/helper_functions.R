@@ -7,8 +7,27 @@ variance <- function(density, a, b) {
     find_sum(function(x) (x - mean)^2 * density(x, a, b), 0L, find_upper_limit(a, b))
 }
 
+skewness <- function(density, a, b) {
+    mean <- find_mean(a, b)
+    variance <- find_variance(a, b)
+    find_sum(function(x) (x - mean)^3 / variance^(3/2) * density(x, a, b), 0, find_upper_limit(a, b))
+}
+
 find_mean <- function(a, b) {
     moment_of_x(1, a, b)
+}
+
+find_variance <- function(a, b) {
+    moment_of_x(2, a, b) - moment_of_x(1, a, b)^2
+}
+
+find_skewness <- function(a, b) {
+    mean <- find_mean(a, b)
+    variance <- find_variance(a, b)
+    (moment_of_x(3, a, b)
+        - 3 * mean * moment_of_x(2, a, b)
+        + 3 * mean^2 * moment_of_x(1, a, b)
+        - mean^3) / variance^(3/2)
 }
 
 find_sum <- function(f, from, to) {
