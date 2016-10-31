@@ -3,8 +3,12 @@ expected_value <- function(density, a, b) {
 }
 
 variance <- function(density, a, b) {
-    mean <- a / (a + b)
+    mean <- find_mean(a, b)
     find_sum(function(x) (x - mean)^2 * density(x, a, b), 0L, find_upper_limit(a, b))
+}
+
+find_mean <- function(a, b) {
+    moment_of_x(1, a, b)
 }
 
 find_sum <- function(f, from, to) {
