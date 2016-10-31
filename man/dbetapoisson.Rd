@@ -4,7 +4,7 @@
 \alias{dbetapoisson}
 \title{Probability function of Beta-Poisson mixture distribution}
 \usage{
-dbetapoisson(x, a, b)
+dbetapoisson(x, a, b, lambda = 1)
 }
 \description{
 Probability function of Beta-Poisson mixture distribution
