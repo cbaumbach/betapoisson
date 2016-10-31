@@ -9,6 +9,13 @@ dbetapoisson(x, a, b, lambda = 1)
 \description{
 Probability function of Beta-Poisson mixture distribution
 }
+\details{
+We have the following formulas for expected value and
+    variance (see references below):
+
+    \deqn{E(X) = E(lambda) = \frac{a}{a+b}}{E(X) = E(lambda) = a/(a+b)}
+    \deqn{V(X) = E(lambda) + V(lambda) = \frac{a}{a+b} + \frac{ab}{(a+b)^2(a+b+1)}}{V(X) = E(lambda) + V(lambda) = a/(a+b) + (ab)/((a+b)^2(a+b+1))}
+}
 \references{
 See pages 43 ff. in Jan Grandell, Mixed Poisson
     Processes, CRC Press, 1997 and also Dimitris Karlis and Evdokia
