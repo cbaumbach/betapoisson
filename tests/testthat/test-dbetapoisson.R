@@ -25,3 +25,7 @@ test_that("a = 2 and b = 3 results in V(X) = 11/25", {
 test_that("a = 2 and b = 3 results in correct skewness", {
     expect_equal(skewness(dbetapoisson, a = 2, b = 3), find_skewness(a = 2, b = 3))
 })
+
+test_that("a = 2 and b = 3 results in correct kurtosis", {
+    expect_equal(kurtosis(dbetapoisson, a = 2, b = 3), find_kurtosis(a = 2, b = 3))
+})
