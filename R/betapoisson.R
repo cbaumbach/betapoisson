@@ -4,6 +4,6 @@
 #'     Processes, CRC Press, 1997
 #'
 #' @export
-dbetapoisson <- function(x) {
+dbetapoisson <- function(x, a, b) {
     0
 }
