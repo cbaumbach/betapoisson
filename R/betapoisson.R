@@ -13,12 +13,15 @@
 #'
 #' @export
 dbetapoisson <- function(x, a, b, lambda = 1) {
+    missing <- is.na(x)
+    x[missing] <- 0
     negative <- x < 0
     x[negative] <- 0
     log_numerator <- x * log(lambda) + lbeta(x + a, b) +
         Re(fAsianOptions::kummerM(-lambda, a + x, a + b + x, lnchf = 1))
     log_denominator <- lfactorial(x) + lbeta(a, b)
     result <- exp(log_numerator - log_denominator)
+    result[missing] <- NA
     result[negative] <- 0
     result
 }
