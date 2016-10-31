@@ -6,15 +6,33 @@
 \usage{
 dbetapoisson(x, a, b, lambda = 1)
 }
+\arguments{
+\item{x}{vector of (non-negative integer) quantiles}
+
+\item{a, b}{parameters of mixing Beta distribution}
+
+\item{lambda}{Poisson mean before thinning (see Details)}
+}
 \description{
 Probability function of Beta-Poisson mixture distribution
 }
 \details{
-We have the following formulas for expected value and
-    variance (see references below):
+The Beta-Poisson distribution with parameters \eqn{a},
+    \eqn{b}, and \eqn{lambda}, can be understood as a random
+    variable constructed by independent \eqn{p}-thinning (see
+    Definition 2.4 in reference 1) from a Poisson random variable
+    with mean \eqn{lambda} where \eqn{p} itself is a random
+    variable following a Beta distribution with parameters \eqn{a}
+    and \eqn{b}.
+
+    The expected value and variance of \eqn{X} can be written as
+    follows (see reference 2):
 
     \deqn{E(X) = E(lambda) = \frac{a}{a+b}}{E(X) = E(lambda) = a/(a+b)}
     \deqn{V(X) = E(lambda) + V(lambda) = \frac{a}{a+b} + \frac{ab}{(a+b)^2(a+b+1)}}{V(X) = E(lambda) + V(lambda) = a/(a+b) + (ab)/((a+b)^2(a+b+1))}
+
+    where \eqn{lambda} has a Beta distribution with parameters
+    \eqn{a} and \eqn{b}.
 }
 \references{
 \enumerate{
