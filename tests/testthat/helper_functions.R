@@ -1,5 +1,5 @@
-expected_value <- function(density, a, b) {
-    find_sum(function(x) x * density(x, a, b), 0L, find_upper_limit(a, b))
+expected_value <- function(density, a, b, lambda = 1) {
+    find_sum(function(x) x * density(x, a, b, lambda), 0L, find_upper_limit(a, b))
 }
 
 variance <- function(density, a, b) {
@@ -19,8 +19,8 @@ kurtosis <- function(density, a, b) {
     find_sum(function(x) (x - mean)^4 / variance^2 * density(x, a, b), 0, find_upper_limit(a, b))
 }
 
-find_mean <- function(a, b) {
-    moment_of_x(1, a, b)
+find_mean <- function(a, b, lambda = 1) {
+    lambda * moment_of_x(1, a, b)
 }
 
 find_variance <- function(a, b) {
@@ -51,7 +51,7 @@ find_sum <- function(f, from, to) {
 }
 
 find_upper_limit <- function(a, b) {
-    as.integer(qpois(-35, lambda = a/(a+b), lower.tail = FALSE, log.p = TRUE))
+    as.integer(qpois(-35, lambda = a/(a+b), lower.tail = FALSE, log.p = TRUE)) + 1L
 }
 
 # The moments of X can be computed using a recursive formula:
