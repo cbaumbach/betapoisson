@@ -13,10 +13,10 @@ skewness <- function(density, a, b, lambda = 1) {
     find_sum(function(x) (x - mean)^3 / variance^(3/2) * density(x, a, b, lambda), 0, find_upper_limit(a, b, lambda))
 }
 
-kurtosis <- function(density, a, b) {
-    mean <- find_mean(a, b)
-    variance <- find_variance(a, b)
-    find_sum(function(x) (x - mean)^4 / variance^2 * density(x, a, b), 0, find_upper_limit(a, b))
+kurtosis <- function(density, a, b, lambda = 1) {
+    mean <- find_mean(a, b, lambda)
+    variance <- find_variance(a, b, lambda)
+    find_sum(function(x) (x - mean)^4 / variance^2 * density(x, a, b, lambda), 0, find_upper_limit(a, b, lambda))
 }
 
 find_mean <- function(a, b, lambda = 1) {
@@ -36,13 +36,13 @@ find_skewness <- function(a, b, lambda = 1) {
         - mean^3) / variance^(3/2)
 }
 
-find_kurtosis <- function(a, b) {
-    mean <- find_mean(a, b)
-    variance <- find_variance(a, b)
-    (moment_of_x(4, a, b)
-        - 4 * mean * moment_of_x(3, a, b)
-        + 6 * mean^2 * moment_of_x(2, a, b)
-        - 4 * mean^3 * moment_of_x(1, a, b)
+find_kurtosis <- function(a, b, lambda = 1) {
+    mean <- find_mean(a, b, lambda)
+    variance <- find_variance(a, b, lambda)
+    (moment_of_x(4, a, b, lambda)
+        - 4 * mean * moment_of_x(3, a, b, lambda)
+        + 6 * mean^2 * moment_of_x(2, a, b, lambda)
+        - 4 * mean^3 * moment_of_x(1, a, b, lambda)
         + mean^4) / variance^2
 }
 

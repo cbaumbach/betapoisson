@@ -41,3 +41,7 @@ test_that("a = 2, b = 3, lambda = 2 results in correct V(X)", {
 test_that("a = 2, b = 3, lambda = 2 results in correct skewness", {
     expect_equal(skewness(dbetapoisson, a = 2, b = 3, lambda = 2), find_skewness(a = 2, b = 3, lambda = 2))
 })
+
+test_that("a = 2, b = 3, lambda = 2 results in correct kurtosis", {
+    expect_equal(kurtosis(dbetapoisson, a = 2, b = 3, lambda = 2), find_kurtosis(a = 2, b = 3, lambda = 2))
+})
