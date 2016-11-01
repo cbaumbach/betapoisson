@@ -36,11 +36,36 @@ dbetapoisson <- function(x, a, b, lambda = 1) {
     x[missing] <- 0
     negative <- x < 0
     x[negative] <- 0
-    log_numerator <- x * log(lambda) + lbeta(x + a, b) +
-        Re(fAsianOptions::kummerM(-lambda, a + x, a + b + x, lnchf = 1))
+    log_numerator <- x * log(lambda) + lbeta(x + a, b) + kummers_m(a + x, a + b + x, -lambda)
     log_denominator <- lfactorial(x) + lbeta(a, b)
     result <- exp(log_numerator - log_denominator)
     result[missing] <- NA
     result[negative] <- 0
     result
+}
+
+#' Confluent hypergeometric function of the 1st kind
+#'
+#' The following differential equation is called Kummer's equation:
+#'
+#' \deqn{z f''(z) + (a-z) f'(z) - b f(z) = 0}{z f"(z) + (a-z) f'(z) - b f(z) = 0}.
+#'
+#' One of its two solutions is the confluent hypergeometric function
+#' of the first kind, also known as Kummer's M function.
+#'
+#' @param a,b complex parameters in Kummer's equation
+#' @param z complex number at which to evaluate Kummer's M function
+#'
+#' @return Returns the natural logarithm of the real part of Kummer's
+#'     M function with parameters \eqn{a} and \eqn{b} evaluated at
+#'     \eqn{z}.
+#'
+kummers_m <- function(a, b, z) {
+    .Fortran("KUMMERSM",
+        ReA = Re(a), ImA = Im(a),
+        ReB = Re(b), ImB = Im(b),
+        ReZ = Re(z), ImZ = Im(z),
+        Result = double(length(z)),
+        N = length(z),
+        PACKAGE = "betapoisson")$Result
 }

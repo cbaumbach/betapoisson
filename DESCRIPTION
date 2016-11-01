@@ -7,11 +7,10 @@ Description: This package groups functions related to the
     Beta-Poisson mixture distribution.
 Depends:
     R (>= 3.3.1)
-Imports:
-    fAsianOptions
-License: GPL (>= 2)
+License: GPL (>= 2) | file LICENSE
 Encoding: UTF-8
 LazyData: true
 Suggests:
     testthat
+NeedsCompilation: yes
 RoxygenNote: 5.0.1
