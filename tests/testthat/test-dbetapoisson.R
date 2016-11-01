@@ -33,3 +33,7 @@ test_that("a = 2 and b = 3 results in correct kurtosis", {
 test_that("a = 2, b = 3, lambda = 2 results in correct E(X)", {
     expect_equal(expected_value(dbetapoisson, a = 2, b = 3, lambda = 2), find_mean(a = 2, b = 3, lambda = 2))
 })
+
+test_that("a = 2, b = 3, lambda = 2 results in correct V(X)", {
+    expect_equal(variance(dbetapoisson, a = 2, b = 3, lambda = 2), find_variance(a = 2, b = 3, lambda = 2))
+})
