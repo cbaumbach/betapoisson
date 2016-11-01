@@ -51,7 +51,7 @@ find_sum <- function(f, from, to) {
 }
 
 find_upper_limit <- function(a, b, lambda = 1) {
-    as.integer(qpois(-35, lambda = lambda * a/(a+b), lower.tail = FALSE, log.p = TRUE)) + 1L
+    as.integer(qpois(-35, lambda = lambda * a/(a+b), lower.tail = FALSE, log.p = TRUE)) + 2L
 }
 
 # The moments of X can be computed using a recursive formula:
